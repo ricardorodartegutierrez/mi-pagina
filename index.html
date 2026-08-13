@@ -36,7 +36,7 @@
   .logo-card .miaa-text{font-size:clamp(1.15rem,3.2vw,1.75rem);text-align:center}
   .rf-logo .miaa-text{font-size:15pt}
   .rp-charts-head .rch-logo .miaa-text{font-size:12pt}
-  .lg-miaa .miaa-text{font-size:1.15rem;text-align:center;margin-bottom:6px}
+  .lg-miaa .miaa-text{font-size:1.1rem;text-align:center;margin-bottom:6px}
   @media(max-width:520px){.brand .miaa-text{font-size:.74rem;max-width:150px}}
 
   .bg-deco{position:fixed;left:0;right:0;bottom:0;height:200px;z-index:0;pointer-events:none;overflow:hidden}
@@ -72,7 +72,8 @@
   .sync-chip.busy .sy-ic{animation:spin 1s linear infinite}
   .sync-chip.error{color:var(--red);border-color:#fecaca;background:var(--red-bg)}
   @keyframes spin{to{transform:rotate(360deg)}}
-  .gh-user{font-size:.7rem;font-weight:700;color:var(--sky-d);background:var(--sky-4);border:1px solid var(--sky-3);border-radius:999px;padding:6px 12px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .gh-user{font-size:.68rem;font-weight:700;color:var(--sky-d);background:var(--sky-4);border:1px solid var(--sky-3);border-radius:999px;padding:6px 12px;max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .usr-chip{font-size:.68rem;font-weight:800;color:var(--s8);background:#fff;border:1px solid var(--s3);border-radius:999px;padding:6px 12px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   @media(max-width:760px){.nav-clock{display:none}}
   @media(max-width:520px){.tab{padding:8px 9px;font-size:.68rem;gap:5px}}
 
@@ -237,7 +238,7 @@
 
   .overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(6px);display:grid;place-items:center;z-index:80;opacity:0;pointer-events:none;transition:opacity .3s;padding:18px}
   .overlay.open{opacity:1;pointer-events:auto}
-  #ovLogin{z-index:120}
+  #ovLogin,#ovUser{z-index:120}
   .modal{background:#fff;border-radius:20px;max-width:700px;width:100%;max-height:88vh;overflow:auto;padding:34px;transform:translateY(28px) scale(.95);transition:transform .35s cubic-bezier(.22,1,.36,1);box-shadow:0 30px 80px rgba(15,23,42,.4)}
   .overlay.open .modal{transform:none}
   .modal-sm{max-width:480px}
@@ -263,7 +264,7 @@
   .mk2{width:19px;height:19px;flex:none;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:.62rem;font-weight:800;margin-top:1px}
   .mk2.ok{background:var(--green)} .mk2.bad{background:var(--red)}
 
-  /* login */
+  /* login / registro */
   .lg-ico{width:70px;height:70px;margin:0 auto 12px;border-radius:20px;background:var(--s9);display:grid;place-items:center;box-shadow:0 12px 30px rgba(15,23,42,.35)}
   .lg-ico svg{width:36px;height:36px;fill:#fff}
   .lg-err{display:none;background:var(--red-bg);border:1.5px solid #fecaca;color:var(--red);border-radius:10px;padding:10px 14px;font-size:.8rem;font-weight:700;margin-bottom:14px;text-align:center}
@@ -273,6 +274,7 @@
   .lg-check input{width:17px;height:17px;accent-color:var(--sky)}
   .lg-help{font-size:.7rem;color:var(--s5);line-height:1.55;background:var(--s0);border:1px dashed var(--s3);border-radius:10px;padding:10px 12px;margin-top:14px}
   .lg-help b{color:var(--s7)}
+  .ug-tabs{display:flex;gap:8px;justify-content:center;margin:14px 0 4px}
 
   .op-section{background:var(--s0);border:1.5px solid var(--s2);border-radius:12px;padding:14px 16px;margin-bottom:14px;text-align:left}
   .op-section > small{display:block;font-size:.64rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--s5);font-weight:800;margin-bottom:8px}
@@ -469,27 +471,61 @@
 </head>
 <body class="locked">
 
-<!-- ============ LOGIN / CUENTA ============ -->
+<datalist id="dlSup"></datalist>
+
+<!-- ============ LOGIN GITHUB / CONEXIÓN ============ -->
 <div class="overlay" id="ovLogin">
   <div class="modal modal-sm">
     <div class="lg-ico"><svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></div>
     <div class="lg-miaa"><span class="miaa-text">Modelo Integral de Aguas de Aguascalientes</span></div>
-    <h3>Acceso al sistema</h3>
-    <p class="sub">Inicie sesión con su cuenta para conectar y sincronizar los datos entre celular y PC vía GitHub.</p>
+    <h3>Conexión al servidor</h3>
+    <p class="sub">Vincule su dispositivo a GitHub para sincronizar celular y PC, o continúe en modo local.</p>
     <div class="lg-err" id="lgErr"></div>
     <form id="lgForm" novalidate>
       <div class="lg-grid">
         <div class="field"><label for="lgToken">Token de acceso personal (GitHub) <b>*</b></label><input type="password" id="lgToken" placeholder="ghp_… o github_pat_…" autocomplete="off"></div>
         <div class="field"><label for="lgRepo">Repositorio de datos <b>*</b></label><input type="text" id="lgRepo" value="miaa-supervisiones" placeholder="nombre del repositorio"></div>
         <div class="field"><label for="lgOwner">Owner del repositorio (opcional)</label><input type="text" id="lgOwner" placeholder="si se deja vacío, será su usuario"></div>
-        <label class="lg-check"><input type="checkbox" id="lgRemember" checked> Recordar cuenta en este equipo</label>
+        <label class="lg-check"><input type="checkbox" id="lgRemember" checked> Recordar conexión en este equipo</label>
       </div>
       <div class="modal-actions">
-        <button type="submit" class="btn btn-primary" id="lgSubmit">🔐 Iniciar sesión y conectar</button>
+        <button type="submit" class="btn btn-primary" id="lgSubmit">🔐 Conectar con GitHub</button>
         <button type="button" class="btn btn-ghost" id="lgLocal">Continuar en modo local</button>
       </div>
     </form>
-    <div class="lg-help"><b>¿Cómo obtengo el token?</b> En GitHub: <b>Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token</b>, marque el permiso <b>repo</b>. Cree un repositorio privado (o use uno existente) y comparta el mismo repositorio con el equipo: todos los dispositivos con esa cuenta/token verán los mismos datos sincronizados.</div>
+    <div class="lg-help"><b>¿Cómo obtengo el token?</b> En GitHub: <b>Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token</b>, marque el permiso <b>repo</b>. Comparta el mismo repositorio con todo el equipo.</div>
+  </div>
+</div>
+
+<!-- ============ REGISTRO / LOGIN DE SUPERVISOR ============ -->
+<div class="overlay" id="ovUser">
+  <div class="modal modal-sm">
+    <div class="lg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+    <div class="lg-miaa"><span class="miaa-text">Modelo Integral de Aguas de Aguascalientes</span></div>
+    <h3>Acceso de supervisor</h3>
+    <p class="sub">Regístrese con su nombre y número de empleado. Sus supervisiones serán visibles <b>únicamente</b> para su cuenta.</p>
+    <div class="ug-tabs">
+      <button type="button" class="fchip active" id="ugTabLogin"> Iniciar sesión</button>
+      <button type="button" class="fchip" id="ugTabReg">＋ Registrarse</button>
+    </div>
+    <div class="lg-err" id="ugErr"></div>
+    <form id="ugFormLogin" novalidate>
+      <div class="lg-grid">
+        <div class="field"><label for="ugLEmp">Número de empleado <b>*</b></label><input id="ugLEmp" inputmode="numeric" placeholder="Ej. 12345"></div>
+        <div class="field"><label for="ugLName">Nombre del supervisor <b>*</b></label><input id="ugLName" list="dlSup" placeholder="Tal como se registró"></div>
+      </div>
+      <div class="modal-actions"><button type="submit" class="btn btn-primary">🔐 Entrar</button></div>
+    </form>
+    <form id="ugFormReg" novalidate style="display:none">
+      <div class="lg-grid">
+        <div class="field"><label for="ugRName">Nombre del supervisor <b>*</b></label><input id="ugRName" list="dlSup" placeholder="Nombre completo"></div>
+        <div class="field"><label for="ugREmp">Número de empleado <b>*</b></label><input id="ugREmp" inputmode="numeric" placeholder="Ej. 12345"></div>
+        <label class="lg-check"><input type="checkbox" id="ugRemember" checked> Recordar mi cuenta en este equipo</label>
+      </div>
+      <div class="modal-actions"><button type="submit" class="btn btn-ok">＋ Registrarme y entrar</button></div>
+    </form>
+    <div class="lg-help">🔒 Privacidad: sus registros se guardan en este dispositivo y en el repositorio de GitHub conectado, y <b>solo su cuenta</b> (supervisor + número de empleado) podrá verlos y editarlos.</div>
+    <p style="text-align:center;margin-top:12px"><button type="button" class="mini ghost" id="ugChangeConn">🔧 Cambiar conexión GitHub / modo local</button></p>
   </div>
 </div>
 
@@ -520,10 +556,11 @@
         </button>
       </div>
       <div class="nav-right">
+        <span class="usr-chip" id="usrChip" style="display:none"></span>
         <span class="sync-chip" id="syncChip"><span class="sy-ic">☁️</span><span id="syncTxt">Sin conexión</span></span>
         <span class="gh-user" id="ghUser" style="display:none"></span>
         <button class="ico-btn" id="btnSync" title="Sincronizar ahora con GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 01-15.5 6.2M3 12a9 9 0 0115.5-6.2"/><path d="M21 3v6h-6"/><path d="M3 21v-6h6"/></svg></button>
-        <button class="ico-btn" id="btnLogout" title="Cerrar sesión"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg></button>
+        <button class="ico-btn" id="btnLogout" title="Cerrar sesión de usuario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg></button>
         <div class="nav-clock"><b id="clockTime">--:--:--</b><span id="clockDate">—</span></div>
       </div>
     </div>
@@ -536,7 +573,7 @@
       <div class="hero-text">
         <h1>Supervisión de Visita de Cobranza</h1>
         <p>Formato oficial de verificación de gestión domiciliaria · Calidad y Control de Cobranza</p>
-        <span class="doc-tag"><span class="dotp"></span>Documento controlado · FMT-COB-01 · Rev. 13 · Oficio 216×355&nbsp;mm · Sincronización GitHub</span>
+        <span class="doc-tag"><span class="dotp"></span>Documento controlado · FMT-COB-01 · Rev. 14 · Oficio 216×355&nbsp;mm · Cuenta por supervisor</span>
       </div>
       <div class="hero-side">
         <div class="folio-card">
@@ -612,7 +649,7 @@
             </div>
             <div class="field f6" style="margin-bottom:16px">
               <label for="fSupervisor">Nombre del supervisor <b>*</b></label>
-              <input type="text" id="fSupervisor" placeholder="Nombre completo de quien supervisa">
+              <input type="text" id="fSupervisor" list="dlSup" placeholder="Nombre completo de quien supervisa">
               <small class="err">Campo requerido</small>
             </div>
             <div class="field">
@@ -638,20 +675,20 @@
     <section class="t-panel" id="panelArch">
       <div class="arch-head">
         <div>
-          <h2>🗂 Archivo permanente</h2>
-          <p>Registros guardados en este dispositivo y sincronizados en la nube (GitHub) · edite, reimprima, comparta o elimine cualquier registro.</p>
+          <h2>🗂 Mi archivo permanente</h2>
+          <p id="archSub">Registros exclusivos de su cuenta · guardados en este dispositivo y sincronizados en GitHub.</p>
         </div>
         <div class="arch-actions">
           <button type="button" class="btn btn-ghost btn-sm" id="btnImport">⇧ Importar respaldo</button>
           <input type="file" id="importInput" accept="application/json,.json" hidden>
           <button type="button" class="btn btn-ghost btn-sm" id="btnCsv">⇩ Exportar CSV</button>
           <button type="button" class="btn btn-ghost btn-sm" id="btnJson">⇩ Respaldo JSON</button>
-          <button type="button" class="btn btn-danger btn-sm" id="btnWipe">🗑 Vaciar archivo</button>
+          <button type="button" class="btn btn-danger btn-sm" id="btnWipe">🗑 Vaciar mi archivo</button>
         </div>
       </div>
 
       <div class="arch-stats">
-        <div class="as-card"><small>Registros totales</small><span class="big" id="aTotal">0</span><div class="u"><i id="uTotal" style="background:var(--sky)"></i></div></div>
+        <div class="as-card"><small>Mis registros</small><span class="big" id="aTotal">0</span><div class="u"><i id="uTotal" style="background:var(--sky)"></i></div></div>
         <div class="as-card"><small>Visitas conformes</small><span class="big" id="aOk" style="color:var(--green)">0</span><div class="u"><i id="uOk" style="background:var(--green)"></i></div></div>
         <div class="as-card"><small>Con observaciones</small><span class="big" id="aWarn" style="color:var(--amber)">0</span><div class="u"><i id="uWarn" style="background:var(--amber)"></i></div></div>
         <div class="as-card"><small>Cumplimiento promedio</small><span class="big" id="aAvg">0</span><span class="big"><em>%</em></span><div class="u"><i id="uAvg" style="background:linear-gradient(90deg,var(--sky),var(--sky-l))"></i></div></div>
@@ -660,7 +697,7 @@
       <div class="arch-toolbar">
         <div class="search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-          <input type="text" id="archSearch" placeholder="Buscar por folio, usuario, cuenta, colonia, realizó…">
+          <input type="text" id="archSearch" placeholder="Buscar en mis registros…">
         </div>
         <button type="button" class="fchip active" data-f="all">Todos</button>
         <button type="button" class="fchip" data-f="ok">Conformes</button>
@@ -678,8 +715,8 @@
           <path d="M2 13c2-1.6 4-1.6 6 0s4 1.6 6 0 4-1.6 6 0"/><path d="M2 17.5c2-1.6 4-1.6 6 0s4 1.6 6 0 4-1.6 6 0"/>
           <path d="M5 10V5a1 1 0 011-1h9l4 4v2"/>
         </svg>
-        <b>Aún no hay registros archivados</b>
-        <span>Al enviar una supervisión desde la pestaña «Registro», se guardará aquí y se sincronizará con GitHub.</span>
+        <b>Aún no tiene registros archivados</b>
+        <span>Al enviar una supervisión desde la pestaña «Registro», se guardará aquí de forma privada y sincronizada.</span>
       </div>
     </section>
 
@@ -688,7 +725,7 @@
       <div class="arch-head">
         <div>
           <h2>✎ Editor del supervisor</h2>
-          <p>Seleccione un registro archivado y modifique libremente cualquier parte del formulario. El folio original se conserva y los cambios se sincronizan.</p>
+          <p>Modifique libremente cualquiera de <b>sus</b> registros archivados. El folio original se conserva y los cambios se sincronizan.</p>
         </div>
         <div class="arch-actions">
           <select class="sortsel" id="editSel" style="min-width:280px"></select>
@@ -747,7 +784,7 @@
             </div>
             <div class="field f6" style="margin-bottom:16px">
               <label for="eSupervisor">Nombre del supervisor <b>*</b></label>
-              <input type="text" id="eSupervisor">
+              <input type="text" id="eSupervisor" list="dlSup">
             </div>
             <div class="field">
               <textarea id="eObs" maxlength="800"></textarea>
@@ -771,22 +808,22 @@
     <section class="t-panel" id="panelStats">
       <div class="arch-head">
         <div>
-          <h2>📊 Panel de resultados</h2>
-          <p>Indicadores y gráficas calculados en tiempo real · pueden imprimirse o compartirse junto con el reporte.</p>
+          <h2>📊 Mi panel de resultados</h2>
+          <p id="statsSub">Indicadores calculados exclusivamente con sus supervisiones.</p>
         </div>
       </div>
 
       <div class="arch-stats">
-        <div class="as-card"><small>Supervisiones totales</small><span class="big" id="stTotal">0</span><div class="u"><i id="suTotal" style="background:var(--sky)"></i></div></div>
+        <div class="as-card"><small>Mis supervisiones</small><span class="big" id="stTotal">0</span><div class="u"><i id="suTotal" style="background:var(--sky)"></i></div></div>
         <div class="as-card"><small>Tasa de conformidad</small><span class="big" id="stOkPct" style="color:var(--green)">0</span><span class="big"><em>%</em></span><div class="u"><i id="suOk" style="background:var(--green)"></i></div></div>
-        <div class="as-card"><small>Supervisores activos</small><span class="big" id="stSup">0</span><div class="u"><i id="suSup" style="background:var(--amber)"></i></div></div>
+        <div class="as-card"><small>Días con visitas</small><span class="big" id="stSup">0</span><div class="u"><i id="suSup" style="background:var(--amber)"></i></div></div>
         <div class="as-card"><small>Cumplimiento promedio</small><span class="big" id="stAvg">0</span><span class="big"><em>%</em></span><div class="u"><i id="suAvg" style="background:linear-gradient(90deg,var(--sky),var(--sky-l))"></i></div></div>
       </div>
 
       <div id="stCharts">
         <div class="charts-grid">
           <div class="chart-card">
-            <div class="cc-head"><b>Resultado global</b><span id="dnSub">—</span></div>
+            <div class="cc-head"><b>Mi resultado global</b><span id="dnSub">—</span></div>
             <div class="donut-flex">
               <div class="donut-box">
                 <svg viewBox="0 0 158 158"><circle class="dn-bg" cx="79" cy="79" r="58"/><circle class="dn-fg" id="dnFg" cx="79" cy="79" r="58"/></svg>
@@ -796,23 +833,23 @@
             </div>
           </div>
           <div class="chart-card">
-            <div class="cc-head"><b>Actividad por día</b><span>supervisiones registradas (últimas 12 fechas)</span></div>
+            <div class="cc-head"><b>Mi actividad por día</b><span>supervisiones registradas (últimas 12 fechas)</span></div>
             <div id="stTrend"></div>
           </div>
         </div>
 
         <div class="chart-card">
-          <div class="cc-head"><b>Cumplimiento por concepto</b><span id="ccSub">—</span></div>
+          <div class="cc-head"><b>Mi cumplimiento por concepto</b><span id="ccSub">—</span></div>
           <div class="vchart" id="stConcepts"></div>
         </div>
 
         <div class="charts-grid">
           <div class="chart-card">
-            <div class="cc-head"><b>Desempeño por supervisor</b><span>promedio de cumplimiento</span></div>
+            <div class="cc-head"><b>Usuarios atendidos</b><span>cumplimiento promedio por usuario visitado</span></div>
             <div id="stSups"></div>
           </div>
           <div class="chart-card">
-            <div class="cc-head"><b>Conceptos destacados</b><span>fortaleza y oportunidad de mejora</span></div>
+            <div class="cc-head"><b>Mis conceptos destacados</b><span>fortaleza y oportunidad de mejora</span></div>
             <div id="stBest"></div>
           </div>
         </div>
@@ -823,7 +860,7 @@
           <path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/><path d="M2 22c2-1.6 4-1.6 6 0"/>
         </svg>
         <b>Sin datos para graficar</b>
-        <span>Cuando existan supervisiones archivadas, aquí verá gráficas detalladas de desempeño.</span>
+        <span>Cuando existan supervisiones archivadas en su cuenta, aquí verá sus gráficas detalladas.</span>
       </div>
     </section>
   </div>
@@ -836,7 +873,7 @@
       <div class="stamp"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
       <h3 id="modalTitle">Supervisión registrada</h3>
       <p class="sub" id="modalFolio">—</p>
-      <p class="sub2" id="modalSaved">💾 Guardado en el archivo permanente de este navegador</p>
+      <p class="sub2" id="modalSaved">💾 Guardado en su archivo privado y sincronizado</p>
       <div class="res-grid" id="resGrid"></div>
       <div class="res-stats" id="resStats"></div>
       <div class="modal-actions">
@@ -870,7 +907,7 @@
       <div class="op-section">
         <small>Seleccione el contenido</small>
         <label class="op-check"><input type="checkbox" id="opReport" checked><span>📄 Reporte de supervisión (tamaño Oficio)</span></label>
-        <label class="op-check"><input type="checkbox" id="opCharts"><span>📊 Gráficas del panel de resultados</span></label>
+        <label class="op-check"><input type="checkbox" id="opCharts"><span>📊 Gráficas de mi panel de resultados</span></label>
       </div>
       <div class="op-section">
         <small>Compartir por WhatsApp</small>
@@ -896,7 +933,7 @@
         <span class="rf-logo" data-miaa></span>
         <h1>Supervisión de Visita de Cobranza</h1>
         <p>Reporte oficial de verificación de gestión domiciliaria · Gestión de Cartera</p>
-        <span class="rf-tag">FMT-COB-01 · Rev. 13 · Tamaño Oficio</span>
+        <span class="rf-tag">FMT-COB-01 · Rev. 14 · Tamaño Oficio</span>
       </div>
       <div class="rf-foliobox">
         <span class="fl">Folio de supervisión</span>
@@ -938,7 +975,7 @@
     </div>
 
     <div class="rf-foot">
-      <span>FMT-COB-01 · Rev. 13 · <b>MIAA · Uso interno</b></span>
+      <span>FMT-COB-01 · Rev. 14 · <b>MIAA · Uso interno</b></span>
       <span>Código de integridad: <b id="rpIntegrity">—</b></span>
       <span id="rpGen">—</span>
     </div>
@@ -965,53 +1002,59 @@ var ASIGNADOS=[
  "ALFONSO MICHAUS MELENDEZ","HÉCTOR DANIEL NIETO RODRIGUEZ","CARLOS JOSE SANTANA AVILA",
  "RICARDO RODARTE GUTIERREZ","HÉCTOR FRANCO JIMENEZ"
 ];
-function fillAsignados(sel){
-  ASIGNADOS.forEach(function(n){
-    var o=document.createElement("option");o.value=n;o.textContent=n;sel.appendChild(o);
-  });
-}
-fillAsignados($("fAsignado"));
-fillAsignados($("eAsignado"));
+function fillAsignados(sel){ASIGNADOS.forEach(function(n){var o=document.createElement("option");o.value=n;o.textContent=n;sel.appendChild(o)})}
+fillAsignados($("fAsignado"));fillAsignados($("eAsignado"));
+ASIGNADOS.forEach(function(n){var o=document.createElement("option");o.value=n;$("dlSup").appendChild(o)});
 
 var CONCEPTOS=[
- "Se acudió al domicilio correcto",
- "El domicilio fue localizado sin inconvenientes",
- "Se presentó e identificó correctamente",
- "Explicó el motivo de la visita",
- "Trató al usuario con respeto",
- "Brindó información clara sobre el adeudo",
- "Informó alternativas de pago",
- "Invitó a regularizar el servicio",
- "Registró correctamente el resultado",
- "Se dejó aviso en puerta"
+ "Se acudió al domicilio correcto","El domicilio fue localizado sin inconvenientes",
+ "Se presentó e identificó correctamente","Explicó el motivo de la visita",
+ "Trató al usuario con respeto","Brindó información clara sobre el adeudo",
+ "Informó alternativas de pago","Invitó a regularizar el servicio",
+ "Registró correctamente el resultado","Se dejó aviso en puerta"
 ];
-var TOTAL=CONCEPTOS.length, KEY="svc_draft_v12", KEY_R="svc_records_v1", KEY_DEL="svc_deleted_v1", KEY_WA="svc_wa_num", KEY_CRED="svc_gh_cred", CIRC=213.6, DCIRC=364.4;
+var TOTAL=CONCEPTOS.length, KEY="svc_draft_v13", KEY_R="svc_records_v1", KEY_DEL="svc_deleted_v1",
+    KEY_WA="svc_wa_num", KEY_CRED="svc_gh_cred", KEY_USERS="svc_users_v1", KEY_SES="svc_session_v1",
+    CIRC=213.6, DCIRC=364.4;
 function $(id){return document.getElementById(id)}
 function pad(n){return String(n).padStart(2,"0")}
 function esc(s){var d=document.createElement("div");d.textContent=(s==null?"":String(s));return d.innerHTML}
 
-/* =========================================================
-   GitHub como servidor (cuenta + sincronización)
-   ========================================================= */
+/* ============ sesión de supervisor (cuenta exclusiva) ============ */
+var SESSION=null;
+function getUsers(){try{var a=JSON.parse(localStorage.getItem(KEY_USERS));return Array.isArray(a)?a:[]}catch(e){return[]}}
+function setUsers(a){try{localStorage.setItem(KEY_USERS,JSON.stringify(a))}catch(e){}}
+function findUserByEmp(emp){var u=null;getUsers().forEach(function(x){if(String(x.emp)===String(emp))u=x});return u}
+function readSession(){
+  try{var s=JSON.parse(localStorage.getItem(KEY_SES));if(s)return s}catch(e){}
+  try{var t=JSON.parse(sessionStorage.getItem(KEY_SES));if(t)return t}catch(e){}
+  return null;
+}
+function visibleRecs(){
+  var all=getRecs();
+  if(!SESSION)return all;
+  return all.filter(function(r){return !r.ownerEmp || String(r.ownerEmp)===String(SESSION.emp)});
+}
+
+/* ============ GitHub como servidor ============ */
 var GH={token:null,repo:null,repoName:null,owner:null,user:null};
 var remoteSha=null, pushT=null, syncBusy=false;
-
 function ghHeaders(){return {"Authorization":"Bearer "+GH.token,"Accept":"application/vnd.github+json","Content-Type":"application/json"}}
 function b64decodeUtf8(b64){var bin=atob(b64.replace(/\s/g,""));var bytes=Uint8Array.from(bin,function(c){return c.charCodeAt(0)});return new TextDecoder().decode(bytes)}
 function utf8ToB64(str){var bytes=new TextEncoder().encode(str);var bin="";bytes.forEach(function(b){bin+=String.fromCharCode(b)});return btoa(bin)}
-
-function setSyncChip(state,txt){
+function setSyncChip(state){
   var chip=$("syncChip");
   chip.className="sync-chip"+(state&&state!=="off"?" "+state:"");
-  $("syncTxt").textContent=txt||({ok:"Sincronizado",busy:"Sincronizando…",error:"Error de sync",off:"Sin conexión",local:"Modo local"}[state]||"Sin conexión");
+  $("syncTxt").textContent=({ok:"Sincronizado",busy:"Sincronizando…",error:"Error de sync",off:"Sin conexión",local:"Modo local"}[state]||"Sin conexión");
 }
 function readCred(){
   try{var c=JSON.parse(localStorage.getItem(KEY_CRED));if(c)return c}catch(e){}
   try{var s=JSON.parse(sessionStorage.getItem(KEY_CRED));if(s)return s}catch(e){}
   return null;
 }
-function setLocked(v){document.body.classList.toggle("locked",v);$("ovLogin").classList.toggle("open",v)}
+function setLocked(v){document.body.classList.toggle("locked",v)}
 function lgError(msg){var e=$("lgErr");if(msg){e.textContent=msg;e.classList.add("show")}else e.classList.remove("show")}
+function ugError(msg){var e=$("ugErr");if(msg){e.textContent=msg;e.classList.add("show")}else e.classList.remove("show")}
 
 function ghPull(){
   return fetch("https://api.github.com/repos/"+GH.repo+"/contents/datos/supervisiones.json",{headers:ghHeaders()}).then(function(r){
@@ -1020,9 +1063,8 @@ function ghPull(){
     return r.json();
   }).then(function(data){
     if(!data||!data.content)return {records:null,deleted:null,sha:null};
-    try{var obj=JSON.parse(b64decodeUtf8(data.content));
-      return {records:obj.records||[],deleted:obj.deleted||[],sha:data.sha};
-    }catch(e){return {records:null,deleted:null,sha:data.sha}}
+    try{var obj=JSON.parse(b64decodeUtf8(data.content));return {records:obj.records||[],deleted:obj.deleted||[],sha:data.sha}}
+    catch(e){return {records:null,deleted:null,sha:data.sha}}
   });
 }
 function ghPush(payload,sha){
@@ -1031,6 +1073,27 @@ function ghPush(payload,sha){
   return fetch("https://api.github.com/repos/"+GH.repo+"/contents/datos/supervisiones.json",{method:"PUT",headers:ghHeaders(),body:JSON.stringify(body)})
     .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()})
     .then(function(j){return j.content&&j.content.sha});
+}
+function ghPullUsers(){
+  return fetch("https://api.github.com/repos/"+GH.repo+"/contents/datos/usuarios.json",{headers:ghHeaders()}).then(function(r){
+    if(r.status===404)return {users:null,sha:null};
+    if(!r.ok)throw new Error("HTTP "+r.status);
+    return r.json();
+  }).then(function(data){
+    if(!data||!data.content)return {users:null,sha:null};
+    try{var obj=JSON.parse(b64decodeUtf8(data.content));return {users:obj.users||[],sha:data.sha}}catch(e){return {users:null,sha:data.sha}}
+  });
+}
+function ghPushUsers(users,sha){
+  var body={message:"MIAA usuarios sync "+new Date().toISOString(),content:utf8ToB64(JSON.stringify({users:users}))};
+  if(sha)body.sha=sha;
+  return fetch("https://api.github.com/repos/"+GH.repo+"/contents/datos/usuarios.json",{method:"PUT",headers:ghHeaders(),body:JSON.stringify(body)})
+    .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()});
+}
+function mergeUsers(local,remote){
+  var map={};local.forEach(function(u){map[String(u.emp)]=u});
+  (remote||[]).forEach(function(u){var k=String(u.emp);if(!map[k])map[k]=u});
+  return Object.keys(map).map(function(k){return map[k]});
 }
 function ensureRepo(){
   return fetch("https://api.github.com/repos/"+GH.repo,{headers:ghHeaders()}).then(function(r){
@@ -1044,7 +1107,7 @@ function ensureRepo(){
   });
 }
 function mergeAll(localR,localD,remote){
-  var del=localR?localD.slice():localD.slice();
+  var del=localD.slice();
   ((remote&&remote.deleted)||[]).forEach(function(id){if(del.indexOf(id)<0)del.push(id)});
   var map={};
   localR.forEach(function(r){map[r.id]=r});
@@ -1080,7 +1143,49 @@ function syncNow(push,quiet){
   });
 }
 function afterChange(){if(!GH.token)return;clearTimeout(pushT);pushT=setTimeout(function(){syncNow(true,true)},2500)}
+function syncUsersPush(){
+  ghPullUsers().then(function(res){
+    var m=mergeUsers(getUsers(),res.users);
+    setUsers(m);
+    return ghPushUsers(m,res.sha);
+  }).catch(function(err){showToast("⚠ No se pudo sincronizar usuarios: "+(err.message||""),true)});
+}
+function pullUsersAndMerge(){
+  if(!GH.token)return Promise.resolve(getUsers());
+  return ghPullUsers().then(function(res){
+    var m=mergeUsers(getUsers(),res.users);
+    setUsers(m);return m;
+  }).catch(function(){return getUsers()});
+}
 
+/* ============ puertas de acceso ============ */
+function showUserGate(){
+  setLocked(true);
+  $("ovLogin").classList.remove("open");
+  $("ovUser").classList.add("open");
+}
+function enterApp(){
+  setLocked(false);
+  $("ovUser").classList.remove("open");
+  $("ovLogin").classList.remove("open");
+  $("usrChip").style.display="inline-block";
+  $("usrChip").textContent="👤 "+SESSION.name+" · #"+SESSION.emp;
+  $("archSub").textContent="Registros exclusivos de "+SESSION.name+" · guardados en este dispositivo y sincronizados en GitHub.";
+  $("statsSub").textContent="Indicadores calculados exclusivamente con las supervisiones de "+SESSION.name+".";
+  if(!$("fSupervisor").value)$("fSupervisor").value=SESSION.name;
+  renderArch();updateArchCount();
+  if(GH.token)syncNow(false,true);else setSyncChip("local");
+}
+function postConnect(silent){
+  $("ghUser").style.display="inline-block";
+  $("ghUser").textContent="☁️ "+GH.user+" · "+GH.repo;
+  pullUsersAndMerge().then(function(){
+    var ses=readSession();
+    var u=ses?findUserByEmp(ses.emp):null;
+    if(u){SESSION={name:u.name,emp:u.emp};enterApp();if(!silent)showToast("🔓 Sesión iniciada.")}
+    else showUserGate();
+  });
+}
 function tryLogin(cred,silent){
   lgError("");
   GH.token=cred.token;GH.repoName=(cred.repo||"miaa-supervisiones").trim();GH.owner=(cred.owner||"").trim();
@@ -1092,17 +1197,11 @@ function tryLogin(cred,silent){
     if(!GH.owner)GH.owner=u.login;
     GH.repo=GH.owner+"/"+GH.repoName;
     return ensureRepo();
-  }).then(function(){
-    setLocked(false);
-    $("ghUser").style.display="inline-block";
-    $("ghUser").textContent="👤 "+GH.user+" · "+GH.repo;
-    setSyncChip("busy");
-    syncNow(false,silent);
-    if(!silent)showToast("🔓 Sesión iniciada. Conexión a GitHub establecida.");
-  }).catch(function(err){
+  }).then(function(){postConnect(silent)})
+  .catch(function(err){
     GH.token=null;
-    if(!silent){lgError(err.message||"No se pudo iniciar sesión.");setLocked(true)}
-    else{setLocked(true);setSyncChip("off")}
+    if(!silent){lgError(err.message||"No se pudo conectar.");setLocked(true);$("ovLogin").classList.add("open")}
+    else{setLocked(true);$("ovLogin").classList.add("open");setSyncChip("off")}
   });
 }
 $("lgForm").addEventListener("submit",function(e){
@@ -1112,29 +1211,69 @@ $("lgForm").addEventListener("submit",function(e){
   var cred={token:token,repo:repo,owner:owner};
   if($("lgRemember").checked){try{localStorage.setItem(KEY_CRED,JSON.stringify(cred))}catch(e){}}
   else{try{sessionStorage.setItem(KEY_CRED,JSON.stringify(cred))}catch(e){}}
+  setLocked(true);$("ovLogin").classList.add("open");
   tryLogin(cred,false);
 });
 $("lgLocal").addEventListener("click",function(){
-  setLocked(false);GH.token=null;setSyncChip("local");
-  showToast("💻 Modo local activo: los datos se guardan solo en este dispositivo.");
+  GH.token=null;$("ghUser").style.display="none";setSyncChip("local");
+  lgError("");
+  showUserGate();
+});
+$("ugChangeConn").addEventListener("click",function(){
+  $("ovUser").classList.remove("open");
+  $("ovLogin").classList.add("open");
+});
+$("ugTabLogin").addEventListener("click",function(){
+  $("ugTabLogin").classList.add("active");$("ugTabReg").classList.remove("active");
+  $("ugFormLogin").style.display="block";$("ugFormReg").style.display="none";ugError("");
+});
+$("ugTabReg").addEventListener("click",function(){
+  $("ugTabReg").classList.add("active");$("ugTabLogin").classList.remove("active");
+  $("ugFormReg").style.display="block";$("ugFormLogin").style.display="none";ugError("");
+});
+function startSession(u){
+  SESSION={name:u.name,emp:u.emp};
+  var ses={name:u.name,emp:u.emp};
+  if($("ugRemember").checked){try{localStorage.setItem(KEY_SES,JSON.stringify(ses))}catch(e){}}
+  else{try{sessionStorage.setItem(KEY_SES,JSON.stringify(ses))}catch(e){}}
+  enterApp();
+  showToast("👤 Bienvenido, "+u.name+". Sus datos son privados para su cuenta.");
+}
+$("ugFormReg").addEventListener("submit",function(e){
+  e.preventDefault();ugError("");
+  var name=$("ugRName").value.trim(),emp=$("ugREmp").value.trim();
+  if(!name||!emp){ugError("Capture nombre y número de empleado.");return}
+  if(findUserByEmp(emp)){ugError("Ese número de empleado ya está registrado. Use «Iniciar sesión».");return}
+  var u={name:name,emp:emp,createdAt:Date.now()};
+  var users=getUsers();users.push(u);setUsers(users);
+  if(GH.token)syncUsersPush();
+  startSession(u);
+});
+$("ugFormLogin").addEventListener("submit",function(e){
+  e.preventDefault();ugError("");
+  var name=$("ugLName").value.trim(),emp=$("ugLEmp").value.trim();
+  if(!name||!emp){ugError("Capture nombre y número de empleado.");return}
+  var u=findUserByEmp(emp);
+  if(!u){ugError("Cuenta no registrada. Use la pestaña «Registrarse».");return}
+  if(String(u.name).toLowerCase()!==name.toLowerCase()){ugError("El nombre no coincide con el registrado para ese número de empleado.");return}
+  startSession(u);
 });
 $("btnSync").addEventListener("click",function(){
-  if(!GH.token){showToast("⚠ Inicie sesión para sincronizar.",true);return}
+  if(!SESSION){showToast("⚠ Inicie sesión primero.",true);return}
+  if(!GH.token){showToast("⚠ Conéctese a GitHub para sincronizar.",true);return}
   syncNow(true,false);
 });
 $("btnLogout").addEventListener("click",function(){
-  if(!confirm("¿Cerrar sesión? Los datos locales permanecen en este dispositivo."))return;
-  try{localStorage.removeItem(KEY_CRED)}catch(e){}
-  try{sessionStorage.removeItem(KEY_CRED)}catch(e){}
-  GH={token:null,repo:null,repoName:null,owner:null,user:null};
-  $("ghUser").style.display="none";
-  setSyncChip("off");
-  setLocked(true);
+  if(!SESSION)return;
+  if(!confirm("¿Cerrar la sesión de "+SESSION.name+"?\nSus datos permanecen guardados de forma privada."))return;
+  try{localStorage.removeItem(KEY_SES)}catch(e){}
+  try{sessionStorage.removeItem(KEY_SES)}catch(e){}
+  SESSION=null;
+  $("usrChip").style.display="none";
+  showUserGate();
 });
 
-/* =========================================================
-   resto del sistema
-   ========================================================= */
+/* ============ resto del sistema ============ */
 function genFolio(){var d=new Date();return "SVC-"+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+"-"+Math.floor(1000+Math.random()*9000)}
 var folio=genFolio();
 function renderBarcode(el,seed){
@@ -1327,7 +1466,7 @@ function setRecs(a){try{localStorage.setItem(KEY_R,JSON.stringify(a));return tru
 function getDel(){try{var a=JSON.parse(localStorage.getItem(KEY_DEL));return Array.isArray(a)?a:[]}catch(e){return[]}}
 function setDel(a){try{localStorage.setItem(KEY_DEL,JSON.stringify(a))}catch(e){}}
 function updateArchCount(){
-  var c=$("archCount");c.textContent=getRecs().length;
+  var c=$("archCount");c.textContent=visibleRecs().length;
   c.classList.remove("bump");void c.offsetWidth;c.classList.add("bump");
 }
 function relTime(ts){
@@ -1346,7 +1485,7 @@ var archFilter="all", archSearch="", sortMode="new";
 function recOptionLabel(r){return r.folio+" · "+(r.usuario||"").slice(0,22)+" · "+r.fecha+(r.updatedAt?" · ✎":"")}
 
 function renderArch(){
-  var recs=getRecs();
+  var recs=visibleRecs();
   var okN=recs.filter(function(r){return r.bad===0}).length;
   var warnN=recs.length-okN;
   var avg=recs.length?Math.round(recs.reduce(function(s,r){return s+(r.pct||0)},0)/recs.length):0;
@@ -1489,7 +1628,7 @@ $("btnCancelEdit").addEventListener("click",function(){
 
 var editLoadedId=null;
 function renderEditPanel(){
-  var recs=getRecs().slice().sort(function(a,b){return b.createdAt-a.createdAt});
+  var recs=visibleRecs().slice().sort(function(a,b){return b.createdAt-a.createdAt});
   var sel=$("editSel"),prev=sel.value;
   sel.innerHTML=recs.map(function(r){return '<option value="'+r.id+'">'+esc(recOptionLabel(r))+'</option>'}).join("");
   if(!recs.length){$("editEmpty").style.display="block";$("editWrap").style.display="none";editLoadedId=null;return}
@@ -1605,7 +1744,7 @@ $("btnPrintEdit").addEventListener("click",function(){
   }catch(e){}
 })();
 
-/* ================= gráficas ================= */
+/* ================= gráficas (solo datos del usuario) ================= */
 function conceptPcts(recs,n){
   return CONCEPTOS.map(function(txt,i){
     var cnt=recs.filter(function(r){return (r.checks||{})[i]==="cumple"}).length;
@@ -1660,11 +1799,12 @@ function buildConcepts(pcts,n){
 function buildSups(recs){
   var m={};
   recs.forEach(function(r){
-    var k=(r.supervisor||"").trim()||"Sin nombre";
+    var k=(r.usuario||"").trim()||"Sin usuario";
     m[k]=m[k]||{t:0,c:0};m[k].t+=(r.pct||0);m[k].c++;
   });
   var arr=Object.keys(m).map(function(k){return{name:k,avg:Math.round(m[k].t/m[k].c),n:m[k].c}})
     .sort(function(a,b){return b.avg-a.avg}).slice(0,6);
+  if(!arr.length)return '<p style="color:var(--s5);font-size:.85rem">Sin datos de usuarios.</p>';
   return arr.map(function(s){
     var col=s.avg>=80?"linear-gradient(90deg,#34d399,#059669)":(s.avg>=50?"linear-gradient(90deg,#38bdf8,#0284c7)":"linear-gradient(90deg,#fcd34d,#d97706)");
     return '<div class="hrow"><div class="hname" title="'+esc(s.name)+'">'+esc(s.name)+'</div>'+
@@ -1673,17 +1813,17 @@ function buildSups(recs){
   }).join("");
 }
 function renderStats(){
-  var recs=getRecs(),n=recs.length;
+  var recs=visibleRecs(),n=recs.length;
   var okN=recs.filter(function(r){return r.bad===0}).length;
   var warnN=n-okN;
   var avg=n?Math.round(recs.reduce(function(s,r){return s+(r.pct||0)},0)/n):0;
-  var sups={};recs.forEach(function(r){var k=String(r.supervisor||"").trim().toLowerCase();if(k)sups[k]=1});
-  var supN=Object.keys(sups).length;
+  var days={};recs.forEach(function(r){var d=new Date(r.createdAt||Date.now());var k=d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());days[k]=1});
+  var daysN=Object.keys(days).length;
   setCount($("stTotal"),n);setCount($("stOkPct"),n?Math.round(okN/n*100):0);
-  setCount($("stSup"),supN);setCount($("stAvg"),avg);
+  setCount($("stSup"),daysN);setCount($("stAvg"),avg);
   $("suTotal").style.width=Math.min(100,n*8)+"%";
   $("suOk").style.width=n?(okN/n*100)+"%":"0%";
-  $("suSup").style.width=Math.min(100,supN*12)+"%";
+  $("suSup").style.width=Math.min(100,daysN*12)+"%";
   $("suAvg").style.width=avg+"%";
   $("stCharts").style.display=n?"block":"none";
   $("stEmpty").style.display=n?"none":"block";
@@ -1697,9 +1837,9 @@ function renderStats(){
     '<span class="chip" style="background:var(--amber-bg);color:var(--amber);border-color:#fde68a"><span class="dot"></span>Observadas: '+warnN+' ('+(100-pctOk)+'%)</span>';
   $("stTrend").innerHTML=buildTrend(recs);
   var pcts=conceptPcts(recs,n);
-  $("ccSub").textContent="porcentaje de «Cumple» sobre "+n+" supervisiones";
+  $("ccSub").textContent="porcentaje de «Cumple» sobre "+n+" supervisiones suyas";
   $("stConcepts").innerHTML=buildConcepts(pcts,n);
-  $("stSups").innerHTML=buildSups(recs)||'<p style="color:var(--s5);font-size:.85rem">Sin datos de supervisor.</p>';
+  $("stSups").innerHTML=buildSups(recs);
   var sorted=pcts.slice().sort(function(a,b){return b.pct-a.pct});
   var best=sorted[0],worst=sorted[sorted.length-1];
   var avgHigh=pcts.filter(function(p){return p.pct>=80}).length;
@@ -1755,8 +1895,8 @@ function openSuccessModal(d,isUpdate){
    '<span class="chip c-ok"><span class="dot"></span>'+d.ok+' cumple</span>'+
    '<span class="chip c-bad"><span class="dot"></span>'+d.bad+' no cumple</span>';
   $("modalTitle").textContent=isUpdate?"Registro actualizado":"Supervisión registrada";
-  $("modalSaved").textContent=isUpdate?"💾 Cambios guardados y sincronizados":"💾 Guardado en el archivo permanente y sincronizado con GitHub";
-  $("modalFolio").textContent="Folio "+d.folio+" · "+(isUpdate?"Actualizado":"Registrado")+" el "+new Date().toLocaleDateString("es-MX",{day:"2-digit",month:"long",year:"numeric"});
+  $("modalSaved").textContent=isUpdate?"💾 Cambios guardados en su archivo privado":"💾 Guardado en su archivo privado y sincronizado";
+  $("modalFolio").textContent="Folio "+d.folio+" · "+(isUpdate?"Actualizado":"Registrado")+" el "+new Date().toLocaleDateString("es-MX",{day:"2-digit",month:"long",year:"numeric"})+(SESSION?" · "+SESSION.name:"");
   overlay.classList.add("open");
 }
 function collectMain(){
@@ -1802,18 +1942,19 @@ function doSubmit(){
     folio:folio,fecha:d.vals[0],hora:d.vals[1],cuenta:d.vals[2],
     usuario:d.vals[3],domicilio:d.vals[4],colonia:d.vals[5],
     supervisor:d.vals[6],asignado:d.vals[7],obs:d.obs,checks:d.checks,
-    ok:d.ok,bad:d.bad,pct:d.pct,createdAt:Date.now()
+    ok:d.ok,bad:d.bad,pct:d.pct,createdAt:Date.now(),
+    ownerEmp:SESSION?SESSION.emp:null,ownerName:SESSION?SESSION.name:null
   };
   var all=getRecs();all.unshift(rec);setRecs(all);updateArchCount();afterChange();
   openSuccessModal(d,false);confetti();
-  showToast("✓ Supervisión enviada y archivada correctamente.");
+  showToast("✓ Supervisión enviada y archivada en su cuenta.");
   try{localStorage.removeItem(KEY)}catch(e){}
 }
 $("formSup").addEventListener("submit",function(ev){ev.preventDefault();doSubmit()});
 $("btnConforme").addEventListener("click",function(){
   var msg=editingId
     ?"¿Actualizar el registro como CONFORME?\nSe marcarán todos los conceptos como «Cumple» y se guardará en el archivo."
-    :"¿Archivar la visita como CONFORME?\nSe marcarán todos los conceptos como «Cumple» y se guardará directamente en el archivo permanente.";
+    :"¿Archivar la visita como CONFORME?\nSe marcarán todos los conceptos como «Cumple» y se guardará directamente en su archivo privado.";
   if(!confirm(msg))return;
   for(var i=0;i<TOTAL;i++){var r=document.querySelector('input[name="chk'+i+'"][value="cumple"]');if(r)r.checked=true}
   document.querySelectorAll("#vtable .vrow").forEach(function(r){r.classList.remove("unanswered")});
@@ -1829,6 +1970,7 @@ function resetAll(newFolio){
   document.querySelectorAll('#vtable input[type="radio"]').forEach(function(r){r.checked=false});
   document.querySelectorAll("#vtable .vrow").forEach(function(r){r.classList.remove("st-ok","st-bad","unanswered")});
   obs.value="";obsCount.textContent="0 / 800";
+  if(SESSION)$("fSupervisor").value=SESSION.name;
   try{localStorage.removeItem(KEY)}catch(e){}
   exitEditMode();
   if(newFolio){folio=genFolio();applyFolio()}
@@ -1854,7 +1996,7 @@ function download(name,content,type){
 }
 function csvCell(s){s=String(s==null?"":s);return /[",;\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
 $("btnCsv").addEventListener("click",function(){
-  var recs=getRecs();
+  var recs=visibleRecs();
   if(!recs.length){showToast("⚠ No hay registros para exportar.",true);return}
   var head=["Folio","Fecha","Hora","Cuenta","Usuario","Asignó/Realizó","Domicilio","Colonia","Supervisor","Resultado","Cumple","No cumple","Editado","Observaciones"];
   var lines=[head.join(",")];
@@ -1862,15 +2004,15 @@ $("btnCsv").addEventListener("click",function(){
     lines.push([r.folio,r.fecha,r.hora,r.cuenta,r.usuario,(r.asignado||""),r.domicilio,r.colonia,r.supervisor,(r.bad===0?"CONFORME":"OBSERVADA"),r.ok,r.bad,(r.updatedAt?"Sí":"No"),r.obs].map(csvCell).join(","));
   });
   var d=new Date();
-  download("supervisiones_MIAA_"+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+".csv","\ufeff"+lines.join("\n"),"text/csv;charset=utf-8");
-  showToast("⇩ CSV exportado con "+recs.length+" registro(s).");
+  download("supervisiones_MIAA_"+(SESSION?SESSION.emp+"_":"")+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+".csv","\ufeff"+lines.join("\n"),"text/csv;charset=utf-8");
+  showToast("⇩ CSV exportado con "+recs.length+" registro(s) suyos.");
 });
 $("btnJson").addEventListener("click",function(){
-  var recs=getRecs();
+  var recs=visibleRecs();
   if(!recs.length){showToast("⚠ No hay registros para respaldar.",true);return}
   var d=new Date();
-  download("respaldo_supervisiones_MIAA_"+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+".json",JSON.stringify(recs,null,2),"application/json");
-  showToast("⇩ Respaldo JSON generado.");
+  download("respaldo_MIAA_"+(SESSION?SESSION.emp+"_":"")+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+".json",JSON.stringify(recs,null,2),"application/json");
+  showToast("⇩ Respaldo JSON generado con sus registros.");
 });
 $("btnImport").addEventListener("click",function(){$("importInput").click()});
 $("importInput").addEventListener("change",function(){
@@ -1880,21 +2022,27 @@ $("importInput").addEventListener("change",function(){
     try{
       var arr=JSON.parse(fr.result);if(!Array.isArray(arr))throw 0;
       var cur=getRecs(),ids={},added=0;cur.forEach(function(r){ids[r.id]=1});
-      arr.forEach(function(r){if(r&&r.id&&!ids[r.id]){cur.unshift(r);added++}});
+      arr.forEach(function(r){
+        if(r&&r.id&&!ids[r.id]){
+          if(SESSION){r.ownerEmp=SESSION.emp;r.ownerName=SESSION.name}
+          cur.unshift(r);added++;
+        }
+      });
       setRecs(cur);renderArch();updateArchCount();afterChange();
-      showToast("⇧ Respaldo importado: "+added+" registro(s) nuevos.");
+      showToast("⇧ Respaldo importado: "+added+" registro(s) asociados a su cuenta.");
     }catch(e){showToast("⚠ Archivo JSON no válido.",true)}
   };
   fr.readAsText(f);
 });
 $("btnWipe").addEventListener("click",function(){
-  var recs=getRecs();
-  if(!recs.length){showToast("⚠ El archivo ya está vacío.",true);return}
-  if(!confirm("⚠ Se eliminarán PERMANENTEMENTE "+recs.length+" registro(s) del archivo y de la sincronización.\n\n¿Está completamente seguro?"))return;
-  if(!confirm("Última confirmación: ¿vaciar todo el archivo permanente?"))return;
+  var recs=visibleRecs();
+  if(!recs.length){showToast("⚠ Su archivo ya está vacío.",true);return}
+  if(!confirm("⚠ Se eliminarán PERMANENTEMENTE sus "+recs.length+" registro(s).\n\n¿Está completamente seguro?"))return;
+  if(!confirm("Última confirmación: ¿vaciar su archivo?"))return;
   setDel(getDel().concat(recs.map(function(r){return r.id})));
-  setRecs([]);renderArch();updateArchCount();afterChange();
-  showToast("🗑 Archivo vaciado por completo.");
+  setRecs(getRecs().filter(function(r){return recs.indexOf(r)<0}));
+  renderArch();updateArchCount();afterChange();
+  showToast("🗑 Su archivo fue vaciado.");
 });
 
 /* =========================================================
@@ -1945,14 +2093,14 @@ function prepareChartsClone(){
   renderStats();
   var html=$("stCharts").innerHTML.replace(/id="([^"]+)"/g,'id="$1-c"');
   var d=collectContext();
-  var head='<div class="rp-charts-head"><span class="rch-logo">'+MIAA+'</span><div><b>Panel de resultados</b>'+
+  var head='<div class="rp-charts-head"><span class="rch-logo">'+MIAA+'</span><div><b>Panel de resultados'+(SESSION?" · "+esc(SESSION.name):"")+'</b>'+
     '<span>Supervisión de Visita de Cobranza · Folio '+esc(d.folio)+' · '+new Date().toLocaleDateString("es-MX",{day:"2-digit",month:"long",year:"numeric"})+'</span></div></div>';
   $("rpChartsInner").innerHTML=head+html;
   finalizeClone($("rpChartsInner"));
 }
 function getSel(){return {report:$("opReport").checked, charts:$("opCharts").checked}}
 function applySelection(sel){
-  var charts=!!(sel.charts&&getRecs().length>0);
+  var charts=!!(sel.charts&&visibleRecs().length>0);
   if(sel.charts&&!charts)showToast("⚠ No hay gráficas disponibles sin registros; se omitirá esa sección.");
   if(charts)prepareChartsClone();
   $("rpCharts").classList.toggle("show",charts);
@@ -2017,10 +2165,11 @@ $("opWA").addEventListener("click",function(){
         pdf.save("Reporte_"+d.folio+"_MIAA.pdf");
         var msg="📄 *MIAA · Supervisión de Visita de Cobranza*\n"+
           "Folio: "+d.folio+"\n"+
+          "Supervisor: "+(d.vals[6]||"—")+"\n"+
           "Usuario: "+(d.vals[3]||"—")+"\n"+
           "Cuenta: "+(d.vals[2]||"—")+"\n"+
           "Realizó: "+(d.vals[7]||"—")+"\n"+
-          (sel.charts&&getRecs().length?"📊 Incluye gráficas del panel de resultados.\n":"")+
+          (sel.charts&&visibleRecs().length?"📊 Incluye mis gráficas del panel.\n":"")+
           "\nAdjunto en este chat el reporte en PDF (tamaño Oficio).";
         window.open("https://wa.me/"+num+"?text="+encodeURIComponent(msg),"_blank");
         showToast("✓ PDF descargado y WhatsApp abierto al "+num+". Adjunte el PDF en el chat.");
@@ -2040,11 +2189,11 @@ window.addEventListener("beforeprint",function(){
   printViaModal=false;
 });
 
-/* ================= arranque con cuenta ================= */
+/* ================= arranque ================= */
 refresh();updateArchCount();
 var cred0=readCred();
 if(cred0){tryLogin(cred0,true)}
-else{setLocked(true);setSyncChip("off")}
+else{setLocked(true);$("ovLogin").classList.add("open");setSyncChip("off")}
 })();
 </script>
 </body>
