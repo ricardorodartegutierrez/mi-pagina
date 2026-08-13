@@ -1,1 +1,1 @@
-{"v":2,"records":[{"id":"msruw451hiir2","folio":"SVC-20260813-6007","fecha":"2026-08-13","hora":"12:30","cuenta":"Ejemplo ","usuario":"Ejemplo ","domicilio":"Ejemplo ","colonia":"Ejemplo ","supervisor":"Ejemplo ","asignado":"ALEJANDRO CORTES ALVAREZ","obs":"Ejemplo","checks":{"0":"cumple","1":"no_cumple","2":"no_cumple","3":"cumple","4":"cumple","5":"cumple","6":"no_cumple","7":"no_cumple","8":"cumple","9":"no_cumple"},"ok":5,"bad":5,"pct":50,"createdAt":1786645989109}],"deleted":["msrurxey6dts4"]}
+{"v":2,"records":[],"deleted":["msrurxey6dts4","msruw451hiir2"]}
